@@ -15,7 +15,6 @@
         {% if session['role'] == 'master' %}
         <div>
             <a style="text-transform:uppercase" href="{{ url_for('home') }}">Главная</a> &nbsp
-            <a style="text-transform:uppercase" href="{{ url_for('paneladmin') }}">Панель администратора</a> &nbsp
             <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a> &nbsp
         </div>
 
@@ -65,6 +64,7 @@
         {% elif session['role'] == 'admin' %}
         <div>
             <a style="text-transform:uppercase" href="{{ url_for('home') }}">Главная</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('paneladmin') }}">Панель администратора</a> &nbsp
             <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a> &nbsp
         </div>
 
