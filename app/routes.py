@@ -10,10 +10,10 @@ from app.DataBase import DataBase
 
 # Подключение к СУБД через драйвер psycopg2
 def connect_db():
-    conn = psycopg2.connect(dbname="DB1",
-                            user="postgres",
-                            password="Polina1704",
-                            host="localhost")
+    conn = psycopg2.connect(dbname="ddfqj5phvktno8",
+                            user="wmhzwpaaeiomkd",
+                            password="1bdc597125dd496d07c73761cf9cbe0ef8af5ddca5f6e79113c71cfc79596212",
+                            host="ec2-54-195-76-73.eu-west-1.compute.amazonaws.com")
     return conn
 
 
