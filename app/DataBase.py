@@ -91,7 +91,7 @@ class DataBase:
 
 # получаем данные о записях в расписании мастера
     def get_ttvisit(self, date, id_employee_master):
-        self.__cursor.execute(f"""SELECT visit.record_time, service.name_of_the_service, service.time,
+        self.__cursor.execute(f"""SELECT DISTINCT visit.record_time, service.name_of_the_service, service.time,
                               client.fcs, client.phone_number, master_work_day.date, master_work_day.id_employee_master
                               FROM visit JOIN client
                               ON visit.phone_number=client.phone_number JOIN service
