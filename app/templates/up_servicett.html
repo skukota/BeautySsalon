@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Обновление данных о записи</title>
+            <style> body {background: #ffe3f6;
+                        color: #f0f8ff;}
+        </style>
+</head>
+<body link="#2f4f4f" vlink="#590c40" alink="#191970" bgcolor="black">
+
+<center>
+        <div>
+            <a style="text-transform:uppercase" href="{{ url_for('home') }}">Главная</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('paneladmin') }}">Панель администратора</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a> &nbsp
+        </div>
+
+        <h2 style="text-transform:uppercase; color: #000000">Обновление данных</h2>
+        <hr>
+
+         <form class="form-upservicett" action="{{ url_for('up_servicett', id_master=id_master, master_date=master_date) }}" method="post" style="color: #6e1851">
+                {{ up_servicett_form.hidden_tag() }}
+                {{ up_servicett_form.select_upturnout_regform(placeholder="Enter the data") }}{{ up_servicett_form.select_upturnout_regform.label() }}<br>
+                {{ up_servicett_form.select_uppayment_regform(placeholder="Enter the data") }}{{ up_servicett_form.select_uppayment_regform.label }}<br><br>
+                {{ up_servicett_form.submit_upservtt_regform() }}<br>
+
+        </form>
+</center>
+</body>
+</html>

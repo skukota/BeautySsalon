@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Главная</title>
+        <style> body {background: #ffe3f6;
+                        color: #000000;}
+        </style>
+</head>
+<body link="#2f4f4f" vlink="#590c40" alink="#191970" bgcolor="black">
+
+<center>
+        {% if 'loggedin' in session %}
+        {% if session['role'] == 'master' %}
+        <a style="text-transform:uppercase" href="{{ url_for('timetable') }}">Расписание</a> &nbsp
+
+        <a style="text-transform:uppercase" href="{{ url_for('login') }}">Авторизация</a> &nbsp
+        <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a>
+        <hr><br>
+        <h1 style="text-transform:uppercase">Princessa Bestiya</h1>
+        <h4 style="text-transform:uppercase">beauty salon</h4><br>
+<p style="text-transform:uppercase; color: #6e1851">для просмотра данных о записях перейдите по вкладке расписание </p>
+
+        {% elif session['role'] == 'admin' %}
+        <a style="text-transform:uppercase" href="{{ url_for('paneladmin') }}">Панель администратора</a> &nbsp
+
+                <a style="text-transform:uppercase" href="{{ url_for('login') }}">Авторизация</a> &nbsp
+        <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a>
+        <hr><br>
+        <h1 style="text-transform:uppercase">Princessa Bestiya</h1>
+        <h4 style="text-transform:uppercase">beauty salon</h4><br>
+<p style="text-transform:uppercase; color: #6e1851">для редактирования расписания перейдите в панель администратора </p>
+        {% endif %}
+        {% endif %}
+
+
+</center>
+
+</body>
+</html>

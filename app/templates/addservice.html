@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Редактирование списка услуг</title>
+            <style> body {background: #ffe3f6;
+                        color: #f0f8ff;}
+        </style>
+</head>
+<body link="#2f4f4f" vlink="#590c40" alink="#191970" bgcolor="black">
+
+<center>
+        <div>
+            <a style="text-transform:uppercase" href="{{ url_for('home') }}">Главная</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('paneladmin') }}">Панель администратора</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a> &nbsp
+        </div>
+
+        <h2 style="text-transform:uppercase; color: #000000">Расписание</h2>
+        <hr>
+        <h2 style="text-transform:uppercase; color: #000000">Добавление услуги</h2>
+        <hr>
+
+         <form class="form-addservice" action="{{ url_for('addservice') }}" method="post" style="color: #6e1851">
+                {{ addservice_form.hidden_tag() }}
+                {{ addservice_form.idservice_regform(placeholder="Enter the data") }}{{ addservice_form.idservice_regform.label() }}<br>
+                {{ addservice_form.service_regform(placeholder="Enter the name of service") }}{{ addservice_form.service_regform.label }}<br>
+                {{ addservice_form.time_regform(placeholder="Enter the service time") }}{{ addservice_form.time_regform.label }}<br>
+                {{ addservice_form.cost_regform(placeholder="Enter the cost of service") }}{{ addservice_form.cost_regform.label }}<br>
+                {{ addservice_form.idtypeservice_regform(placeholder="Enter the data") }}{{ addservice_form.idtypeservice_regform.label() }}<br><br><br>
+                {{ addservice_form.submitadd_regform() }}<br>
+                <br>
+         </form>
+    <a href="{{ url_for('service') }}">Если вы закончили, нажмите сюда</a>
+
+</center>
+</body>
+</html>

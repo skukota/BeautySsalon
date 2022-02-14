@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Регистрация сотрудника</title>
+        <style> body {background: #ffe3f6;
+                        color: #000000;}
+        </style>
+</head>
+<body link="#000000" vlink="#590c40" alink="#191970" bgcolor="black">
+
+<center>
+        <h2 style="text-transform:uppercase; color: #000000">Регистрация</h2>
+        <hr>
+
+        <div>
+            <a style="text-transform:uppercase" href="{{ url_for('home') }}">Главная</a> &nbsp
+        </div>
+
+
+        <form class="form-register" action="{{ url_for('register') }}" method="post" style="color: #6e1851">
+                {{ reg_form.hidden_tag() }}
+                {{ reg_form.login_regform(placeholder="Enter your login") }}{{ reg_form.login_regform.label() }}<br>
+                {{ reg_form.password_regform(placeholder="Enter your password") }}{{ reg_form.password_regform.label }}<br>
+                {{ reg_form.fcs_regform(placeholder="Enter your full name") }}{{ reg_form.fcs_regform.label }}<br>
+                {{ reg_form.select_regform }}{{ reg_form.select_regform.label }}<br><br>
+                {{ reg_form.submit_regform() }}<br>
+                <br>
+                <a href="{{ url_for('login') }}">Если вы уже зарегистрированы, нажмите сюда</a>
+        </form>
+</center>
+</body>
+</html>

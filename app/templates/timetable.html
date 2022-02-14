@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Расписание</title>
+        <style> body {background: #ffe3f6;
+                        color: #f0f8ff;}
+        </style>
+</head>
+<body link="#2f4f4f" vlink="#590c40" alink="#191970" bgcolor="black">
+
+<center>
+    <!-- Если зашла как мастер, расписание выглядит так -->
+        {% if 'loggedin' in session %}
+        {% if session['role'] == 'master' %}
+        <div>
+            <a style="text-transform:uppercase" href="{{ url_for('home') }}">Главная</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('paneladmin') }}">Панель администратора</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a> &nbsp
+        </div>
+
+        <h2 style="text-transform:uppercase; color: #000000">Расписание</h2>
+        <hr>
+
+        <form class="form-date-master" action="{{ url_for('timetable') }}" method="post" style="color: #6e1851">
+                        {{ date_form.hidden_tag() }}
+                        {{ date_form.date_regform() }}{{ date_form.date_regform.label() }}<br><br>
+                        {{ date_form.submitdate_regform() }}<br>
+        </form>
+
+        {% if master_tt %}
+        <table class="table">
+        <colgroup>
+                <col span="5" style="background:#ffe3f6">
+        </colgroup>
+
+            <thead>
+                <tr style="color: #6e1851;">
+                    <th scope="col">Время записи</th>
+                    <th scope="col">Название услуги</th>
+                    <th scope="col">Длительность услуги</th>
+                    <th scope="col">ФИО клиента</th>
+                    <th scope="col">Номер телефона клиента</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for i in range(master_tt_len) %}
+                <tr style="color: #6e1851;">
+
+                    <td align="center">{{ master_tt[i][0] }}</td>
+                    <td align="center">{{ master_tt[i][1] }}</td>
+                    <td align="center">{{ master_tt[i][2] }}</td>
+                    <td align="center">{{ master_tt[i][3] }}</td>
+                    <td align="center">{{ master_tt[i][4] }}</td>
+
+
+                  </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+    <!-- Если зашла как админ, расписание выглядит так -->
+        {% elif session['role'] == 'admin' %}
+        <div>
+            <a style="text-transform:uppercase" href="{{ url_for('home') }}">Главная</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a> &nbsp
+        </div>
+
+        <h2 style="text-transform:uppercase; color: #000000">Расписание</h2>
+        <hr>
+
+        <form class="form-date" action="{{ url_for('timetable') }}" method="post" style="color: #6e1851">
+                        {{ date_form.hidden_tag() }}
+                        {{ date_form.date_regform() }}{{ date_form.date_regform.label() }}<br><br>
+                        {{ date_form.submitdate_regform() }}<br>
+        </form>
+
+        <hr>
+
+    <a href="{{ url_for('addmastertt', master_date = master_date) }}">Добавить мастера в расписание</a>
+    <br><br>
+
+    {% if db_master %}
+<table class="table">
+        <colgroup>
+                <col span="3" style="background:#ffe3f6">
+        </colgroup>
+
+            <thead>
+                <tr style="color: #6e1851;">
+                    <th scope="col">Мастер</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for i in range(master_len) %}
+                <tr style="color: #6e1851;">
+                    <td align="center">{{ db_master[i][0] }}</td>
+                    <td align="center">
+                        <form action="{{ url_for('timetable')}}" method="post">
+                            {{ redir_mastertt_form.idredirtt_hidden_regform(value=db_master[i][1]) }}
+                            {{ redir_mastertt_form.idredirtt_time() }}
+                            {{ redir_mastertt_form.idredirtt_submit_regform() }}
+                        </form>
+                    </td>
+                    <td align="center">
+                        <form action="{{ url_for('timetable')}}" method="post">
+                            {{ delmaster_form.idmasterhidden_regform(value=db_master[i][1]) }}
+                            {{ delmaster_form.date_del_regform() }}
+                            {{ delmaster_form.idmastersubmit_regform() }}
+                        </form>
+                    </td>
+
+                  </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        <hr>
+
+    <a href="{{ url_for('paneladmin') }}">Вернуться в панель администратора</a>
+
+    {% endif %}
+    {% endif %}
+
+</center>
+</body>
+</html>

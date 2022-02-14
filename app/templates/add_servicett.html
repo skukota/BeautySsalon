@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Редактирование списка записей у мастера на смену</title>
+            <style> body {background: #ffe3f6;
+                        color: #f0f8ff;}
+        </style>
+</head>
+<body link="#2f4f4f" vlink="#590c40" alink="#191970" bgcolor="black">
+
+<center>
+        <div>
+            <a style="text-transform:uppercase" href="{{ url_for('home') }}">Главная</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('paneladmin') }}">Панель администратора</a> &nbsp
+            <a style="text-transform:uppercase" href="{{ url_for('logout') }}">Выйти</a> &nbsp
+        </div>
+
+        <h2 style="text-transform:uppercase; color: #000000">Добавление записей</h2>
+        <hr>
+
+         <form class="form-addmaster" action="{{ url_for('add_servicett', master_date = master_date, id_master=id_master) }}" method="post" style="color: #6e1851">
+                {{ add_servicett_form.hidden_tag() }}
+                {{ add_servicett_form.time_addservtt_regform }}{{ add_servicett_form.time_addservtt_regform.label }}<br>
+                    {# {{ add_servicett_form.select_turnout_regform }}{{ add_servicett_form.select_turnout_regform.label }}<br> #}
+                {{ add_servicett_form.fcs_regform }}{{ add_servicett_form.fcs_regform.label }}<br>
+                {{ add_servicett_form.number_regform }}{{ add_servicett_form.number_regform.label }}<br>
+                {{ add_servicett_form.date_addservtt_regform }}{{ add_servicett_form.date_addservtt_regform.label }}<br>
+                {{ add_servicett_form.idserv_addservtt_regform }}{{ add_servicett_form.idserv_addservtt_regform.label }}<br>
+                {{ add_servicett_form.idmast_addservtt_regform }}{{ add_servicett_form.idmast_addservtt_regform.label }}<br><br>
+                {{ add_servicett_form.submit_addservtt_regform() }}<br>
+                <br>
+                <a href="{{ url_for('ttmaster', master_date = master_date, id_master=id_master) }}">Если вы закончили, нажмите сюда</a>
+        </form>
+</center>
+</body>
+</html>
